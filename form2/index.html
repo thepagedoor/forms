@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* style.css */
+
+        /* Reset default margin and padding */
+      
+      body::-webkit-scrollbar {
+  display: none;
+}
+      
+      body {
+  scrollbar-width: none; /* Firefox */
+  overflow: -moz-scrollbars-none; /* Firefox */
+}
+      body {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea,
+        input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .radio-buttons {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        button {
+            appearance: none;
+            background-color: #2ea44f;
+            border: 1px solid rgba(27, 31, 35, .15);
+            border-radius: 6px;
+            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            padding: 6px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            margin: 0 auto;
+            display: block;
+            white-space: nowrap;
+        }
+
+        button:focus:not(:focus-visible):not(.focus-visible) {
+            box-shadow: none;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #2c974b;
+        }
+
+        button:focus {
+            box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+            outline: none;
+        }
+
+        button:disabled {
+            background-color: #94d3a2;
+            border-color: rgba(27, 31, 35, .1);
+            color: rgba(255, 255, 255, .8);
+            cursor: default;
+        }
+
+        button:active {
+            background-color: #298e46;
+            box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aahana</h1>
+        <h2>Order Now</h2>
+        <form id="whatsappForm" method="post">
+            <label for="name">Your good name? *</label>
+            <input type="text" id="name" name="name" placeholder="Aahana" required><br>
+
+            <label for="phone">Mobile Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required><br>
+
+            <label for="email">Your email (optional)</label>
+            <input type="email" id="email" name="email"><br>
+
+            <label for="items">Item Number (use "," to add more)</label>
+            <input type="text" id="items" name="items" placeholder="Enter the image number" required><br>
+
+            
+            <label for="location">Share your location Url</label>
+            <input type="url" id="location" name="location" placeholder="https://maps.app.goo.gl/gfCwwVySMqQGUS3R6"><br>
+
+            <button type="submit" onclick="openWhatsApp(event)">Submit on WhatsApp</button>
+        </form>
+    </div>
+    <script>
+        // script.js
+        function openWhatsApp(event) {
+            event.preventDefault();  // Prevent the form from submitting normally
+
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+            var items = document.getElementById("items").value;
+            var size = document.querySelector('input[name="size"]:checked');
+            var street = document.getElementById("street").value;
+            var address2 = document.getElementById("address2").value;
+            var city = document.getElementById("city").value;
+            var state = document.getElementById("state").value;
+            var zip = document.getElementById("zip").value;
+            var gift = document.querySelector('input[name="gift"]:checked');
+            var location = document.getElementById("location").value;
+
+            fetch('https://script.google.com/macros/s/AKfycbyDv2Cee1f-SuACYKU-e12s9qWLxJXDQXKJvR3VJK360wqb4g3SdHo2f1tu8xRcYNRU/exec')
+                .then(response => response.text())
+                .then(responseNumber => {
+                    // Compose WhatsApp message
+                    var message = "Shopping Template\n\n";
+                    message += "Response #" + responseNumber + "\n\n";
+                    message += "Your good name? : " + name + "\n";
+                    message += "Mobile Number : " + phone + "\n";
+                    if (email !== "") {
+                        message += "Your email : " + email + "\n";
+                    }
+                    message += "Item Number : " + items + "\n";
+                    if (size) {
+                        message += "Your Size is : " + size.value + "\n";
+                    }
+                    message += "\nYour Address\n";
+                    message += "Street Address : " + street + "\n";
+                    if (address2 !== "") {
+                        message += "Address line 2 : " + address2 + "\n";
+                    }
+                    message += "City : " + city + "\n";
+                    message += "State / Province : " + state + "\n";
+                    message += "Postal / Zip Code : " + zip + "\n\n";
+                    if (gift) {
+                        message += "Wrap the package as a Gift : " + gift.value + "\n";
+                    }
+                    if (location !== "") {
+                        message += "Share your location Url : " + location + "\n";
+                    }
+
+                    // Create WhatsApp message link
+                    var phoneNumber = "+916302941811"; // Replace with your phone number
+                    var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+
+                    // Open WhatsApp in a new tab
+                    window.open(whatsappUrl, "_blank");
+
+                    // Show response number on the form (optional)
+                    var responseNumberDisplay = document.createElement("p");
+                    //responseNumberDisplay.textContent = "Response Number: #" + responseNumber;
+                    document.getElementById("whatsappForm").appendChild(responseNumberDisplay);
+                })
+                .catch(error => {
+                    console.error('Error fetching response number:', error);
+                    alert('There was an error processing your request. Please try again later.');
+                });
+        }
+    </script>
+</body>
+</html>
