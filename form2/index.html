@@ -3,23 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Now</title>
     <style>
         /* style.css */
 
         /* Reset default margin and padding */
-      
-      body::-webkit-scrollbar {
-  display: none;
-}
-      
-      body {
-  scrollbar-width: none; /* Firefox */
-  overflow: -moz-scrollbars-none; /* Firefox */
-}
-      body {
-  -ms-overflow-style: none; /* IE and Edge */
-}
-      
         * {
             margin: 0;
             padding: 0;
@@ -72,12 +60,6 @@
         input[type="radio"],
         input[type="checkbox"] {
             margin-right: 5px;
-        }
-
-        .radio-buttons {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
         }
 
         button {
@@ -135,11 +117,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Aahana</h1>
+        <h1>GNK ENTERPRISES </h1>
         <h2>Order Now</h2>
         <form id="whatsappForm" method="post">
             <label for="name">Your good name? *</label>
-            <input type="text" id="name" name="name" placeholder="Aahana" required><br>
+            <input type="text" id="name" name="name" placeholder="Gnk" required><br>
 
             <label for="phone">Mobile Number *</label>
             <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required><br>
@@ -150,7 +132,6 @@
             <label for="items">Item Number (use "," to add more)</label>
             <input type="text" id="items" name="items" placeholder="Enter the image number" required><br>
 
-            
             <label for="location">Share your location Url</label>
             <input type="url" id="location" name="location" placeholder="https://maps.app.goo.gl/gfCwwVySMqQGUS3R6"><br>
 
@@ -166,13 +147,6 @@
             var phone = document.getElementById("phone").value;
             var email = document.getElementById("email").value;
             var items = document.getElementById("items").value;
-            var size = document.querySelector('input[name="size"]:checked');
-            var street = document.getElementById("street").value;
-            var address2 = document.getElementById("address2").value;
-            var city = document.getElementById("city").value;
-            var state = document.getElementById("state").value;
-            var zip = document.getElementById("zip").value;
-            var gift = document.querySelector('input[name="gift"]:checked');
             var location = document.getElementById("location").value;
 
             fetch('https://script.google.com/macros/s/AKfycbyDv2Cee1f-SuACYKU-e12s9qWLxJXDQXKJvR3VJK360wqb4g3SdHo2f1tu8xRcYNRU/exec')
@@ -187,20 +161,6 @@
                         message += "Your email : " + email + "\n";
                     }
                     message += "Item Number : " + items + "\n";
-                    if (size) {
-                        message += "Your Size is : " + size.value + "\n";
-                    }
-                    message += "\nYour Address\n";
-                    message += "Street Address : " + street + "\n";
-                    if (address2 !== "") {
-                        message += "Address line 2 : " + address2 + "\n";
-                    }
-                    message += "City : " + city + "\n";
-                    message += "State / Province : " + state + "\n";
-                    message += "Postal / Zip Code : " + zip + "\n\n";
-                    if (gift) {
-                        message += "Wrap the package as a Gift : " + gift.value + "\n";
-                    }
                     if (location !== "") {
                         message += "Share your location Url : " + location + "\n";
                     }
